@@ -96,9 +96,14 @@
                 },
                 body: JSON.stringify({ dealership: dealership })
             })
-            .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response
+        }
             .then(data => console.log('Success:', data))
-            .catch((error) => console.error('Error:', error));
+            .catch((error) => console.error('error:', error));
         }
     }
 </script>
