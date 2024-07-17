@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            appearance: none; /* Remove default arrow */
+            background-color: #f9f9f9; /* Dropdown background */
+            cursor: pointer;
+        }
+
+        select:hover {
+            background-color: #e9e9e9;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #66afe9;
+            box-shadow: 0 0 0 2px rgba(102, 175, 233, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <select id="dealerSelect" onchange="setDealership()">
+        <option value="">Please select</option>
+        <option value="Aston Martin Birmingham">Aston Martin Birmingham</option>
+        <option value="Aston Martin Brentwood">Aston Martin Brentwood</option>
+        <option value="Aston Martin Edinburgh">Aston Martin Edinburgh</option>
+        <option value="Aston Martin Hatfield">Aston Martin Hatfield</option>
+        <option value="Bentley Chelmsford">Bentley Chelmsford</option>
+        <option value="Bentley Tunbridge Wells">Bentley Tunbridge Wells</option>
+        <option value="INEOS Edinburgh">INEOS Edinburgh</option>
+        <option value="INEOS Midlands">INEOS Midlands</option>
+        <option value="Jaguar Barnet">Jaguar Barnet</option>
+        <option value="Jaguar Brentwood">Jaguar Brentwood</option>
+        <option value="Jaguar Hatfield">Jaguar Hatfield</option>
+        <option value="Jaguar Swindon">Jaguar Swindon</option>
+        <option value="Lamborghini Chelmsford">Lamborghini Chelmsford</option>
+        <option value="Lamborghini Tunbridge Wells">Lamborghini Tunbridge Wells</option>
+        <option value="Land Rover Barnet">Land Rover Barnet</option>
+        <option value="Land Rover Hatfield">Land Rover Hatfield</option>
+        <option value="Land Rover Swindon">Land Rover Swindon</option>
+        <option value="McLaren Hatfield">McLaren Hatfield</option>
+        <option value="Pure Triumph Wellingborough">Pure Triumph Wellingborough</option>
+        <option value="Pure Triumph Woburn">Pure Triumph Woburn</option>
+        <option value="Rolls-Royce Motor Cars Edinburgh">Rolls-Royce Motor Cars Edinburgh</option>
+    </select>
+</div>
+
+<script>
+    // JavaScript variable to store selected dealership
+    let dealership = '';
+
+    // Function to set the dealership variable based on selected option
+    function setDealership() {
+        let selectElement = document.getElementById('dealerSelect');
+        dealership = selectElement.value;
+        console.log('Selected dealership:', dealership);
+    }
+</script>
+
+</body>
+</html>
