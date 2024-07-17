@@ -85,7 +85,23 @@
     function setDealership() {
         let selectElement = document.getElementById('dealerSelect');
         dealership = selectElement.value;
-        console.log('Selected dealership:', dealership);
+    }
+    function sendToServer() {
+        let selectElement = document.getElementById('dealerSelect');
+        let dealership = selectElement.value;
+
+        if (dealership) {
+            fetch('http://localhost:3000/sendToVoiceflow', {  // Update with your server URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ dealership: dealership })
+            })
+            .then(response => response.json())
+            .then(data => console.log('Success:', data))
+            .catch((error) => console.error('Error:', error));
+        }
     }
 </script>
 
