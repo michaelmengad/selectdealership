@@ -15,6 +15,7 @@
 
         .container {
             background-color: #fff;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -26,11 +27,11 @@
 
         select {
             width: 100%;
+            padding: 10px;
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            /*appearance: none; Remove default arrow */
-            background-color: #f9f9f9; /* Dropdown background */
+            background-color: #f9f9f9;
             cursor: pointer;
         }
 
@@ -48,7 +49,7 @@
 <body>
 
 <div class="container">
-
+    <h2>Select a Dealership</h2>
     <select id="dealerSelect" onchange="setDealership()">
         <option value="">Please select</option>
         <option value="Aston Martin Birmingham">Aston Martin Birmingham</option>
@@ -73,6 +74,7 @@
         <option value="Pure Triumph Woburn">Pure Triumph Woburn</option>
         <option value="Rolls-Royce Motor Cars Edinburgh">Rolls-Royce Motor Cars Edinburgh</option>
     </select>
+    <button onclick="sendToServer()">Send Selection</button>
 </div>
 
 <script>
@@ -84,26 +86,27 @@
         let selectElement = document.getElementById('dealerSelect');
         dealership = selectElement.value;
     }
-    function sendToServer() {
-        let selectElement = document.getElementById('dealerSelect');
-        let dealership = selectElement.value;
 
+    // Function to send dealership selection to server
+    function sendToServer() {
         if (dealership) {
-            fetch('http://localhost:3000/sendToVoiceflow', {  // Update with your server URL
+            fetch('http://localhost:3000/sendToVoiceflow', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ dealership: dealership })
             })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response
-        }
-            .then(data => console.log('Success:', data))
-            .catch((error) => console.error('error:', error));
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // Parse response as JSON
+            })
+            .then(data => console.log('Server response:', data))
+            .catch(error => console.error('Fetch Error:', error));
+        } else {
+            console.error('No dealership selected');
         }
     }
 </script>
